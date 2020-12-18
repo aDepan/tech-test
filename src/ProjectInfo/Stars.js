@@ -4,11 +4,11 @@ import { createUseStyles } from 'react-jss';
 
 const cropStarsAmount = starsAmount => {
   if (starsAmount > 1000) {
-    starsAmount = (starsAmount / 1000).toFixed(1) + ' K';
+    return (starsAmount / 1000).toFixed(1) + ' K';
   }
 
   if (starsAmount > 1000000) {
-    starsAmount = (starsAmount / 1000).toFixed(1) + ' M';
+    return (starsAmount / 1000).toFixed(1) + ' M';
   }
 
   return starsAmount;
