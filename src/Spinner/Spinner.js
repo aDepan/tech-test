@@ -2,6 +2,6 @@ import React from 'react';
 
 import './Spinner.css';
 
-const spinner = () => <div className='loader'>Loading...</div>;
+const Spinner = () => <div className='loader'>Loading...</div>;
 
-export default spinner;
+export default React.memo(Spinner);

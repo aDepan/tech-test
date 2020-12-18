@@ -1,84 +1,28 @@
 import React from 'react';
 
-import { createUseStyles, createTheming } from 'react-jss';
-
-const ThemeContext = React.createContext({});
-const theming = createTheming(ThemeContext);
-const { ThemeProvider, useTheme } = theming;
-
-const blackHover = {
-  backgroundColor: 'black',
-  color: 'white',
-};
-
-const pinkHover = {
-  backgroundColor: 'rebeccapurple',
-  border: 'rebeccapurple 1px solid',
-};
+import { createUseStyles } from 'react-jss';
 
 const useStyles = createUseStyles({
-  button: props => ({
+  button: {
     padding: '15px 30px',
     borderRadius: '35px',
     outline: 'none',
-    backgroundColor: props.btnColor,
-    '&hover': props.btnColor === 'white' ? blackHover : pinkHover,
-  }),
-
-  white: {
-    backgroundColor: 'white',
-    border: 'black 2px solid',
-    '&:hover': {
-      backgroundColor: 'black',
-      color: 'white',
-    },
-    '&:disabled': {
-      cursor: 'none',
-      backgroundColor: '#ccc',
-      border: '#ccc 2px solid',
-      color: 'black',
-    },
-  },
-  pink: {
-    backgroundColor: 'hotpink',
-    border: 'hotpink 1px solid',
-    color: 'white',
-    '&:hover': {
-      backgroundColor: 'rebeccapurple',
-      border: 'rebeccapurple 1px solid',
-    },
-    '&:disabled': {
-      cursor: 'none',
-      backgroundColor: '#ccc',
-      border: '#ccc 2px solid',
-    },
-  },
-  mathSymbolClass: {
-    fontSize: '18px',
-    marginRight: '5px',
+    textTransform: 'uppercase',
   },
 });
 
-const Button = props => {
-  const classes = useStyles(props);
-  let colorClass = '';
-  colorClass =
-    props.btnColor === 'white'
-      ? `${classes.button} ${classes.white}`
-      : `${classes.button} ${classes.pink}`;
-
-  let mathSym = props.name === 'DECREMENT' ? '-' : '+';
+const Button = ({ onClick, isDisabled, buttonName, colorClass }) => {
+  const classes = useStyles();
 
   return (
     <button
-      className={colorClass}
-      onClick={props.clicked}
-      disabled={props.btnDisabled}
+      className={`${classes.button} ${colorClass}`}
+      onClick={onClick}
+      disabled={isDisabled}
     >
-      <span className={classes.mathSymbolClass}>{mathSym}</span>
-      {props.name}
+      {buttonName}
     </button>
   );
 };
 
-export default Button;
+export default React.memo(Button);

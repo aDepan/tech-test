@@ -1,11 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 
-import Button from './Button/Button.js';
-import Counter from './Counter/Counter.js';
+import IncrementBtn from './Button/IncrementBtn';
+import DecrementBtn from './Button/DecrementBtn';
+import Counter from './Counter/Counter';
 
 import ProjectInfo from './ProjectInfo/ProjectInfo.js';
 
 import { createUseStyles } from 'react-jss';
+
+const PROJECTS = [
+  'eslint/eslint',
+  'oakwood/front-end-questions',
+  'babel/babel',
+  'webpack/webpack',
+  'storybooks/storybook',
+  'facebook/react',
+  'reactjs/redux',
+  'expressjs/express',
+];
 
 const useStyles = createUseStyles({
   app: {
@@ -16,52 +28,31 @@ const useStyles = createUseStyles({
 });
 
 const App = () => {
-  let [currentValue, setValue] = useState(0);
-  let [isDisabledDec, setIsDisabledDec] = useState('disabled');
-  let [isDisabledInc, setIsDisabledInc] = useState('');
+  const [currentValue, setValue] = useState(0);
 
   const classes = useStyles();
 
-  const decrementHandler = () => {
-    setValue(--currentValue);
-    if (currentValue <= 0) {
-      setIsDisabledDec('disabled');
-    }
-    if (currentValue < 7) {
-      setIsDisabledInc('');
-    }
-  };
+  const decrementHandler = useCallback(() => {
+    setValue(val => val - 1);
+  }, []);
 
-  const incrementHandler = () => {
-    setValue(++currentValue);
-    if (currentValue > 0) {
-      setIsDisabledDec('');
-    }
+  const incrementHandler = useCallback(() => {
+    setValue(val => val + 1);
+  }, []);
 
-    if (currentValue >= 7) {
-      setIsDisabledInc('disabled');
-    }
-  };
+  const isDisabledDec = currentValue <= 0;
+  const isDisabledInc = currentValue >= PROJECTS.length - 1;
+
   return (
     <div>
       <div className={classes.app}>
-        <Button
-          name='DECREMENT'
-          btnColor='white'
-          clicked={decrementHandler}
-          btnDisabled={isDisabledDec}
-        />
+        <DecrementBtn onClick={decrementHandler} isDisabled={isDisabledDec} />
         <Counter value={currentValue} />
-        <Button
-          name='INCREMENT'
-          btnColor='hotpink'
-          clicked={incrementHandler}
-          btnDisabled={isDisabledInc}
-        />
+        <IncrementBtn onClick={incrementHandler} isDisabled={isDisabledInc} />
       </div>
-      <ProjectInfo prjId={currentValue} />
+      <ProjectInfo projectName={PROJECTS[currentValue]} />
     </div>
   );
 };
 
-export default App;
+export default React.memo(App);
