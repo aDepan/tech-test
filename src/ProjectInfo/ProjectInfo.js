@@ -33,6 +33,7 @@ const ProjectInfo = ({ projectName }) => {
   const classes = useStyles();
 
   useEffect(() => {
+    setIsLoading(true);
     loadDataFromAPI(projectName)
       .then(data => {
         setProject({
