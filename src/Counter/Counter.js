@@ -11,7 +11,7 @@ const useStyles = createUseStyles({
 const Counter = props => {
   const classes = useStyles();
 
-  return <p className={classes.counter}>Counter: {props.value}</p>;
+  return <p className={classes.counter}>Project {props.value}</p>;
 };
 
 export default React.memo(Counter);

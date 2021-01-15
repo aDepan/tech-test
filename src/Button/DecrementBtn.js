@@ -26,7 +26,7 @@ const IncrementBtn = ({ isDisabled, onClick }) => {
   return (
     <Button
       colorClass={classes.white}
-      buttonName='- decrement'
+      buttonName='Previous project'
       onClick={onClick}
       isDisabled={isDisabled}
     />

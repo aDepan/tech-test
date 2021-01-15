@@ -10,7 +10,6 @@ import { createUseStyles } from 'react-jss';
 
 const PROJECTS = [
   'eslint/eslint',
-  'oakwood/front-end-questions',
   'babel/babel',
   'webpack/webpack',
   'storybooks/storybook',
