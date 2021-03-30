@@ -20,7 +20,7 @@ const useStyles = createUseStyles({
     },
   },
 });
-
+console.log('test');
 const IncrementBtn = ({ isDisabled, onClick }) => {
   const classes = useStyles();
   return (
