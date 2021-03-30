@@ -38,9 +38,12 @@ const App = () => {
   const incrementHandler = useCallback(() => {
     setValue(val => val + 1);
   }, []);
+  console.log(classes);
 
   const isDisabledDec = currentValue <= 0;
   const isDisabledInc = currentValue >= PROJECTS.length - 1;
+
+  console.log(isDisabledInc);
 
   return (
     <div>

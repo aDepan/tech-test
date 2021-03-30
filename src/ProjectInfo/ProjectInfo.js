@@ -32,6 +32,8 @@ const ProjectInfo = ({ projectName }) => {
 
   const classes = useStyles();
 
+  console.log('test 2');
+
   useEffect(() => {
     setIsLoading(true);
     loadDataFromAPI(projectName)
