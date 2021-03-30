@@ -10,7 +10,7 @@ const useStyles = createUseStyles({
     textTransform: 'uppercase',
   },
 });
-
+console.log('test3');
 const Button = ({ onClick, isDisabled, buttonName, colorClass }) => {
   const classes = useStyles();
 
